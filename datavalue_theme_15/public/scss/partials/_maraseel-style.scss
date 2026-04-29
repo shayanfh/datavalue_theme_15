@@ -1,0 +1,521 @@
+/*
+  Maraseel Theme Style
+  Based on the Maraseel UI/UX Design System
+  Brand: Indigo/Violet (#4F46E5 primary)
+  Surfaces: Slate scale
+  Source: UI_UX_Guide_for_ERPNext.md
+*/
+
+body.dv-Maraseel-style {
+
+  /* ---- Page-level surfaces ---- */
+  background-color: $maraseel_bg_page $imp;
+
+  .page-container,
+  .layout-main,
+  .layout-main-section,
+  .layout-main-section-wrapper,
+  .layout-side-section,
+  .content.page-container {
+    background-color: $maraseel_bg_page;
+    color: $maraseel_text_primary;
+  }
+
+  .page-head,
+  .page-head.drop-shadow {
+    background-color: $maraseel_surface !important;
+    border-bottom: 1px solid $maraseel_border;
+  }
+
+  .page-title h1,
+  .page-title .title-text,
+  h1, h2, h3, h4, h5, h6 {
+    color: $maraseel_text_primary;
+    letter-spacing: -0.2px;
+  }
+
+  .text-muted,
+  .text-extra-muted {
+    color: $maraseel_text_muted $imp;
+  }
+
+  /* ---- Side menu (icons rail) ---- */
+  .side-menu .side-menu-icons > ul > li > a:hover {
+    border-color: $maraseel_color_style;
+    color: $maraseel_color_style;
+  }
+
+  .side-menu .side-menu-icons > ul > li.active > a {
+    background: $maraseel_color_style;
+    color: #ffffff;
+  }
+
+  .side-menu .side-menu-icons.menu-icons-with-label > ul > li > a:hover > div {
+    border-color: $maraseel_color_style $imp;
+    color: $maraseel_color_style $imp;
+  }
+
+  .side-menu .side-menu-icons.menu-icons-with-label > ul > li.active > a > div {
+    background: $maraseel_color_style $imp;
+    color: #ffffff $imp;
+  }
+
+  .side-menu .side-menu-icons.menu-icons-with-label > ul > li.active > a > span {
+    color: $maraseel_color_style;
+  }
+
+  /* ---- Side menu items (dropdown list) ---- */
+  .side-menu .side-menu-items > ul.dropdown-list > li > a {
+    background: $maraseel_surface;
+    border: 1px solid $maraseel_border;
+    border-radius: 10px;
+  }
+
+  .side-menu .side-menu-items > ul.dropdown-list > li > a:hover {
+    border-color: $maraseel_color_style;
+    color: $maraseel_color_style;
+  }
+
+  .side-menu .side-menu-items > ul.dropdown-list > li > a:hover .sub-menu-arrow {
+    color: $maraseel_color_style;
+  }
+
+  .side-menu .side-menu-items > ul.dropdown-list > li.active > a {
+    background: $maraseel_color_style;
+    border-color: $maraseel_color_style;
+    color: #ffffff;
+  }
+
+  .side-menu .side-menu-items > ul.dropdown-list > li.active > a .sub-menu-arrow {
+    color: #ffffff;
+  }
+
+  .side-menu .side-menu-items > ul.dropdown-list > li > ul > li > a:hover {
+    color: $maraseel_color_style;
+  }
+
+  .side-menu .side-menu-items > ul.dropdown-list > li > ul > li.active > a {
+    color: $maraseel_color_style;
+  }
+
+  /* ---- Modules grid menu ---- */
+  .side-menu .modules-menu .modules-menu-list a {
+    color: $maraseel_text_muted;
+  }
+
+  .side-menu .modules-menu .modules-menu-list a:hover {
+    border-color: $maraseel_border;
+    color: $maraseel_color_style;
+  }
+
+  .side-menu .modules-menu .modules-menu-list a.active {
+    color: $maraseel_color_style;
+  }
+
+  .btn-toggle-main-menu {
+    background: $maraseel_color_style;
+
+    &:hover {
+      background: $maraseel_color_style_hover;
+    }
+  }
+
+  /* ---- Primary text accents ---- */
+  .text-primary {
+    color: $maraseel_color_style $imp;
+  }
+
+  /* ---- Buttons (gradient primary as per design guide) ---- */
+  .btn.btn-primary,
+  div#driver-popover-item .driver-popover-footer button.btn-primary,
+  div#driver-popover-item .driver-popover-footer button.driver-next-btn {
+    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    background-color: $maraseel_color_style;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    --icon-stroke: currentColor;
+    --icon-fill-bg: $maraseel_color_style;
+  }
+
+  .btn.btn-primary:hover {
+    background: linear-gradient(135deg, #4F46E5, #4338CA);
+    box-shadow: 0 6px 14px rgba(79, 70, 229, 0.35);
+  }
+
+  .btn-primary:not(:disabled):not(.disabled):active,
+  div#driver-popover-item .driver-popover-footer button.driver-next-btn:not(:disabled):not(.disabled):active,
+  .btn-primary:not(:disabled):not(.disabled).active,
+  div#driver-popover-item .driver-popover-footer button.driver-next-btn:not(:disabled):not(.disabled).active,
+  .show > .btn-primary.dropdown-toggle,
+  div#driver-popover-item .driver-popover-footer .show > button.dropdown-toggle.driver-next-btn {
+    background: $maraseel_color_style_hover;
+    background-color: $maraseel_color_style_hover;
+    border-color: $maraseel_color_style_hover;
+  }
+
+  .btn-primary-light {
+    color: $maraseel_color_style_hover;
+    background-color: $maraseel_color_style_light;
+    border-color: $maraseel_color_style_light;
+  }
+
+  .btn.btn-default,
+  .btn.btn-secondary {
+    border-radius: 10px;
+    border: 1px solid $maraseel_border;
+    background: $maraseel_surface;
+
+    &:hover {
+      border-color: $maraseel_color_style;
+      color: $maraseel_color_style;
+    }
+  }
+
+  /* ---- Forms ---- */
+  input[type=checkbox]:checked {
+    background-color: $maraseel_color_style;
+    background-image: url("data:image/svg+xml, <svg viewBox='0 0 8 7' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 4.00001L2.66667 5.80001L7 1.20001' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-size: 57%, 100%;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    border: 1px solid $maraseel_border;
+    background: $maraseel_surface;
+    color: $maraseel_text_primary;
+
+    &:focus {
+      border-color: $maraseel_color_style $imp;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+  }
+
+  .form-tabs-list .form-tabs .nav-item .nav-link.active {
+    border-bottom: 1px solid $maraseel_color_style;
+    color: $maraseel_color_style;
+  }
+
+  /* ---- Datatable ---- */
+  .datatable .dt-cell--focus .dt-cell__content {
+    border-color: $maraseel_color_style;
+  }
+
+  /* ---- Widgets / cards (per UI guide) ---- */
+  .widget,
+  .widget.shortcut-widget-box,
+  .widget.links-widget-box,
+  .widget.dashboard-widget-box,
+  .widget.onboarding-widget-box,
+  .widget.chart-widget-box,
+  .widget.number-widget-box,
+  .form-section,
+  .frappe-card,
+  .ce-block__content,
+  .new-timeline,
+  .list-row-container {
+    background: $maraseel_surface;
+    border-radius: 18px;
+    border: 1px solid $maraseel_border;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  }
+
+  .widget.shortcut-widget-box:hover {
+    border-color: $maraseel_color_style $imp;
+
+    .widget-title {
+      color: $maraseel_color_style $imp;
+    }
+
+    svg.icon-xs {
+      stroke: $maraseel_color_style $imp;
+    }
+  }
+
+  .widget .widget-head .widget-title,
+  .widget-title {
+    color: $maraseel_text_primary;
+    font-weight: 700;
+  }
+
+  /* ---- List sidebar ---- */
+  .list-sidebar .sidebar-action {
+    color: $maraseel_color_style;
+  }
+
+  /* ---- Notifications tabs ---- */
+  .notifications-list .notification-item-tabs .notifications-category.active {
+    border-bottom: 1px solid $maraseel_color_style;
+    color: $maraseel_color_style;
+  }
+
+  /* ---- Pagination ---- */
+  button.btn.btn-default.btn-sm.btn-paging.btn-info {
+    background: $maraseel_color_style !important;
+    border-color: $maraseel_color_style !important;
+    color: #ffffff;
+  }
+
+  /* ---- Navbar ---- */
+  .dv-navbar {
+    background: $maraseel_surface;
+    border-bottom: 1px solid $maraseel_border;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dropdown-user > a .dv-user-info span.user-name {
+    color: $maraseel_color_style;
+  }
+
+  .dv-navbar .dv-nav-left .btn-open-modules {
+    color: $maraseel_color_style_hover;
+  }
+
+  .dv-navbar .dv-nav-left .btn-open-modules:hover {
+    color: $maraseel_color_style;
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dropdown-user .dropdown-menu .dropdown-item:hover,
+  .dv-navbar .dv-nav-right > ul > li.dropdown-user .dropdown-menu .dropdown-item:focus {
+    color: $maraseel_color_style $imp;
+    background-color: $maraseel_color_style_light;
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dropdown-user .dropdown-menu .dropdown-item.active,
+  .dv-navbar .dv-nav-right > ul > li.dropdown-user .dropdown-menu .dropdown-item:active {
+    color: #ffffff !important;
+    background-color: $maraseel_color_style;
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dropdown-language .dropdown-menu .dropdown-item:hover,
+  .dv-navbar .dv-nav-right > ul > li.dropdown-language .dropdown-menu .dropdown-item:focus {
+    color: $maraseel_color_style $imp;
+    background-color: $maraseel_color_style_light;
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dropdown-language .dropdown-menu .dropdown-item.active,
+  .dv-navbar .dv-nav-right > ul > li.dropdown-language .dropdown-menu .dropdown-item:active {
+    color: #ffffff !important;
+    background-color: $maraseel_color_style;
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dropdown-full-screen > button:hover,
+  .dv-navbar .dv-nav-right > ul > li.dropdown-files > button:hover,
+  .dv-navbar .dv-nav-right > ul > li.dropdown-search > button:hover {
+    color: $maraseel_color_style !important;
+  }
+
+  .dv-navbar .dv-nav-right > ul > li.dv-dropdown-notifications > a:hover {
+    color: $maraseel_color_style !important;
+  }
+
+  /* ---- Quill toolbar ---- */
+  .ql-snow.ql-toolbar button:hover, .ql-snow .ql-toolbar button:hover,
+  .ql-snow.ql-toolbar button:focus, .ql-snow .ql-toolbar button:focus,
+  .ql-snow.ql-toolbar button.ql-active, .ql-snow .ql-toolbar button.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-label:hover, .ql-snow .ql-toolbar .ql-picker-label:hover,
+  .ql-snow.ql-toolbar .ql-picker-label.ql-active, .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+  .ql-snow.ql-toolbar .ql-picker-item:hover, .ql-snow .ql-toolbar .ql-picker-item:hover,
+  .ql-snow.ql-toolbar .ql-picker-item.ql-selected, .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+    color: $maraseel_color_style;
+  }
+
+  /* ---- Highlight / mark ---- */
+  mark, .mark {
+    padding: 0 4px;
+    background-color: $maraseel_color_style_light;
+    color: $maraseel_color_style_hover;
+    border-radius: 4px;
+  }
+
+  /* ---- Status pills (Pending/Active/Completed/Cancelled) ---- */
+  .indicator-pill,
+  .indicator-pill-round,
+  .status-indicator,
+  .badge {
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+
+  .indicator-pill.orange, .indicator-pill-right.orange,
+  .badge.badge-warning,
+  [data-status="Pending"] .indicator-pill {
+    background-color: $maraseel_status_pending_bg;
+    color: #B45309;
+    border-left: 3px solid $maraseel_status_pending;
+  }
+
+  .indicator-pill.blue, .indicator-pill-right.blue,
+  .badge.badge-info,
+  [data-status="In Progress"] .indicator-pill {
+    background-color: $maraseel_status_active_bg;
+    color: #1D4ED8;
+    border-left: 3px solid $maraseel_status_active;
+  }
+
+  .indicator-pill.green, .indicator-pill-right.green,
+  .badge.badge-success,
+  [data-status="Completed"] .indicator-pill {
+    background-color: $maraseel_status_success_bg;
+    color: #047857;
+    border-left: 3px solid $maraseel_status_success;
+  }
+
+  .indicator-pill.red, .indicator-pill-right.red,
+  .badge.badge-danger,
+  [data-status="Cancelled"] .indicator-pill {
+    background-color: $maraseel_status_danger_bg;
+    color: #B91C1C;
+    border-left: 3px solid $maraseel_status_danger;
+  }
+
+  /* ---- Progress bars (gradient per guide) ---- */
+  .progress {
+    height: 8px;
+    background: #F1F5F9;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress .progress-bar {
+    border-radius: 4px;
+    background: linear-gradient(90deg, #6366F1, #4338CA);
+  }
+
+  /* ---- Number widget hero (dashboard stats) ---- */
+  .widget.number-widget-box .widget-body .widget-content .number {
+    font-size: 30px;
+    font-weight: 800;
+    color: $maraseel_text_primary;
+    letter-spacing: -0.8px;
+  }
+
+  .widget .widget-head .widget-label .widget-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: $maraseel_text_muted;
+  }
+
+  /* ---- Sidebar / list views ---- */
+  .list-row-col,
+  .list-row,
+  .list-row-head {
+    color: $maraseel_text_primary;
+  }
+
+  .list-subject .level-item.bold {
+    color: $maraseel_text_primary;
+  }
+
+  /* ---- Modals ---- */
+  .modal-content {
+    border-radius: 18px;
+    border: 1px solid $maraseel_border;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+  }
+
+  .modal-header {
+    border-bottom: 1px solid $maraseel_border;
+  }
+
+  .modal-footer {
+    border-top: 1px solid $maraseel_border;
+  }
+
+  /* ---- Workspace shortcut accent (left strip per guide) ---- */
+  .widget.shortcut-widget-box {
+    border-left: 3px solid $maraseel_color_style_light;
+
+    &:hover {
+      border-left-color: $maraseel_color_style;
+    }
+  }
+
+  /* ---- Dark mode interplay ---- */
+  &.dv-dark-style {
+    background-color: #0F172A $imp;
+
+    .page-container,
+    .layout-main,
+    .layout-main-section,
+    .layout-main-section-wrapper {
+      background-color: #0F172A;
+      color: #E2E8F0;
+    }
+
+    .widget,
+    .widget.shortcut-widget-box,
+    .widget.links-widget-box,
+    .widget.dashboard-widget-box,
+    .modal-content,
+    .frappe-card {
+      background: #1E293B;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .form-control {
+      background: #1E293B;
+      border-color: #334155;
+      color: #E2E8F0;
+    }
+
+    .btn-primary-light {
+      color: #ffffff;
+      background-color: $maraseel_color_style;
+      border-color: $maraseel_color_style;
+    }
+
+    .side-menu .side-menu-icons.menu-icons-with-label > ul > li > a > div {
+      color: $maraseel_color_style_light;
+    }
+
+    .form-tabs-list .form-tabs .nav-item .nav-link.active {
+      color: $maraseel_color_style;
+    }
+
+    .side-menu .modules-menu .modules-menu-list a {
+      color: $maraseel_color_style_light;
+    }
+
+    .side-menu .modules-menu .modules-menu-list a:hover {
+      border-color: $maraseel_color_style;
+      color: $maraseel_color_style;
+    }
+
+    .side-menu .modules-menu .modules-menu-list a.active {
+      color: $maraseel_color_style;
+    }
+
+    .side-menu .side-menu-items > ul.dropdown-list > li > a {
+      background: #1E293B;
+      border-color: #334155;
+    }
+
+    .side-menu .side-menu-items > ul.dropdown-list > li > a:hover {
+      border-color: $maraseel_color_style;
+      color: $maraseel_color_style;
+    }
+
+    .side-menu .side-menu-items > ul.dropdown-list > li.active > a {
+      background: $maraseel_color_style;
+      border-color: $maraseel_color_style;
+      color: #ffffff;
+    }
+
+    .dv-navbar {
+      background: #1E293B;
+      border-bottom-color: #334155;
+    }
+
+    .side-menu .side-menu-icons > ul > li.active > a {
+      color: #ffffff;
+    }
+  }
+}
