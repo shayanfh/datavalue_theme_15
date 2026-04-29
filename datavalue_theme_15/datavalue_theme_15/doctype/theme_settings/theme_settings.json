@@ -42,7 +42,13 @@
   "apply_on_navbar",
   "apply_on_menu",
   "apply_on_dashboard",
-  "apply_on_workspace"
+  "apply_on_workspace",
+  "custom_tab",
+  "card_image",
+  "powered_by",
+  "link",
+  "login_desc",
+  "login_head"
  ],
  "fields": [
   {
@@ -57,7 +63,7 @@
    "fieldname": "theme_color",
    "fieldtype": "Select",
    "label": "Color",
-   "options": "Blue\nGreen\nRed\nOrange\nYellow\nPink\nViolet\nMaraseel"
+   "options": "Blue\nGreen\nRed\nOrange\nYellow\nPink\nViolet"
   },
   {
    "fieldname": "login_page_section",
@@ -227,11 +233,41 @@
    "fieldtype": "Check",
    "hidden": 1,
    "label": "Data Value Theme Installed"
+  },
+  {
+   "fieldname": "custom_tab",
+   "fieldtype": "Tab Break",
+   "label": "Custom"
+  },
+  {
+   "fieldname": "card_image",
+   "fieldtype": "Attach Image",
+   "label": "Card Image"
+  },
+  {
+   "fieldname": "powered_by",
+   "fieldtype": "Data",
+   "label": "Powered By"
+  },
+  {
+   "fieldname": "link",
+   "fieldtype": "Data",
+   "label": "Link"
+  },
+  {
+   "fieldname": "login_desc",
+   "fieldtype": "Data",
+   "label": "Login Desc"
+  },
+  {
+   "fieldname": "login_head",
+   "fieldtype": "Data",
+   "label": "Login Head"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2024-05-30 15:53:15.474962",
+ "modified": "2026-01-26 19:10:03.457252",
  "modified_by": "Administrator",
  "module": "Datavalue Theme 15",
  "name": "Theme Settings",
@@ -248,6 +284,8 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
