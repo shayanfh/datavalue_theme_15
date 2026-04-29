@@ -28,6 +28,26 @@ $violet_color_style_light: #fbe0ff;
 $violet_color_style: #ab47bc;
 $violet_color_style_hover: #773183;
 
+$maraseel_color_style_light: #EEF2FF;
+$maraseel_color_style: #4F46E5;
+$maraseel_color_style_hover: #4338CA;
+
+$maraseel_bg_page: #F8FAFC;
+$maraseel_surface: #FFFFFF;
+$maraseel_border: #E2E8F0;
+$maraseel_text_primary: #0F172A;
+$maraseel_text_muted: #64748B;
+$maraseel_text_subtle: #94A3B8;
+
+$maraseel_status_pending: #F59E0B;
+$maraseel_status_pending_bg: #FFF7ED;
+$maraseel_status_active: #3B82F6;
+$maraseel_status_active_bg: #EFF6FF;
+$maraseel_status_success: #10B981;
+$maraseel_status_success_bg: #ECFDF5;
+$maraseel_status_danger: #EF4444;
+$maraseel_status_danger_bg: #FEF2F2;
+
 :root {
 
   --blue_color_style_light: #edf8ff;
@@ -57,6 +77,22 @@ $violet_color_style_hover: #773183;
   --violet_color_style_light: #fbe0ff;
   --violet_color_style: #ab47bc;
   --violet_color_style_hover: #773183;
+
+  --maraseel_color_style_light: #EEF2FF;
+  --maraseel_color_style: #4F46E5;
+  --maraseel_color_style_hover: #4338CA;
+
+  --maraseel: #4F46E5;
+  --maraseel-50: #EEF2FF;
+  --maraseel-100: #E0E7FF;
+  --maraseel-200: #C7D2FE;
+  --maraseel-300: #A5B4FC;
+  --maraseel-400: #818CF8;
+  --maraseel-500: #6366F1;
+  --maraseel-600: #4F46E5;
+  --maraseel-700: #4338CA;
+  --maraseel-800: #3730A3;
+  --maraseel-900: #312E81;
 
   --checkbox-size: 18px;
 
