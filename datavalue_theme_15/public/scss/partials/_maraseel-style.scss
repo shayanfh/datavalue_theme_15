@@ -8,27 +8,74 @@
 
 body.dv-Maraseel-style,
 body.dv-maraseel-style {
+  /* ── Brand scale ── */
   --dv-brand-50: #EEF2FF;
   --dv-brand-100: #E0E7FF;
+  --dv-brand-200: #C7D2FE;
   --dv-brand-500: #6366F1;
   --dv-brand-600: #4F46E5;
   --dv-brand-700: #4338CA;
+  --dv-brand-800: #3730A3;
 
+  /* ── Slate scale ── */
+  --dv-slate-0: #FFFFFF;
   --dv-slate-50: #F8FAFC;
   --dv-slate-100: #F1F5F9;
   --dv-slate-200: #E2E8F0;
+  --dv-slate-300: #CBD5E1;
+  --dv-slate-400: #94A3B8;
   --dv-slate-500: #64748B;
+  --dv-slate-600: #475569;
   --dv-slate-700: #334155;
+  --dv-slate-800: #1E293B;
   --dv-slate-900: #0F172A;
 
-  --dv-radius-sm: 8px;
-  --dv-radius-md: 10px;
-  --dv-radius-lg: 14px;
-  --dv-radius-xl: 18px;
+  /* ── Semantic status colors ── */
+  --dv-warning-500: #F59E0B;
+  --dv-warning-600: #D97706;
+  --dv-warning-700: #B45309;
+  --dv-warning-bg:  #FFF7ED;
+  --dv-success-500: #10B981;
+  --dv-success-600: #059669;
+  --dv-success-700: #047857;
+  --dv-success-bg:  #ECFDF5;
+  --dv-danger-500:  #EF4444;
+  --dv-danger-600:  #DC2626;
+  --dv-danger-700:  #B91C1C;
+  --dv-danger-bg:   #FEF2F2;
+  --dv-info-500:    #3B82F6;
+  --dv-info-600:    #2563EB;
+  --dv-info-700:    #1D4ED8;
+  --dv-info-bg:     #EFF6FF;
 
-  --dv-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
-  --dv-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.10);
-  --dv-shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.14);
+  /* ── Gradients ── */
+  --dv-gradient-brand:    linear-gradient(135deg, #6366F1, #4F46E5, #4338CA);
+  --dv-gradient-hero:     linear-gradient(135deg, #4F46E5, #7C3AED, #EC4899);
+  --dv-gradient-card:     linear-gradient(180deg, #FFFFFF, #F8FAFC);
+  --dv-gradient-progress: linear-gradient(90deg,  #6366F1, #4338CA);
+
+  /* ── Spacing ── */
+  --dv-space-xs:  4px;
+  --dv-space-sm:  8px;
+  --dv-space-md:  12px;
+  --dv-space-lg:  16px;
+  --dv-space-xl:  20px;
+  --dv-space-xxl: 24px;
+
+  /* ── Radius (xs:6 sm:10 md:14 lg:18 xl:22 2xl:28) ── */
+  --dv-radius-xs:   6px;
+  --dv-radius-sm:   10px;
+  --dv-radius-md:   14px;
+  --dv-radius-lg:   18px;
+  --dv-radius-xl:   22px;
+  --dv-radius-2xl:  28px;
+  --dv-radius-full: 999px;
+
+  /* ── Shadows ── */
+  --dv-shadow-sm: 0 1px 2px  rgba(15, 23, 42, 0.05);
+  --dv-shadow-md: 0 4px 10px rgba(15, 23, 42, 0.08);
+  --dv-shadow-lg: 0 10px 20px rgba(15, 23, 42, 0.12);
+  --dv-shadow-xl: 0 12px 24px rgba(79, 70, 229, 0.25);
 
   /* ---- Page-level surfaces ---- */
   background-color: $maraseel_bg_page $imp;
@@ -49,12 +96,20 @@ body.dv-maraseel-style {
     border-bottom: 1px solid $maraseel_border;
   }
 
-  .page-title h1,
-  .page-title .title-text,
   h1, h2, h3, h4, h5, h6 {
     color: $maraseel_text_primary;
-    letter-spacing: -0.2px;
   }
+
+  .page-title h1,
+  .page-title .title-text {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    color: $maraseel_text_primary;
+  }
+
+  h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
+  h3 { font-size: 17px; font-weight: 700; }
 
   .text-muted,
   .text-extra-muted {
@@ -151,13 +206,13 @@ body.dv-maraseel-style {
   .btn.btn-primary,
   div#driver-popover-item .driver-popover-footer button.btn-primary,
   div#driver-popover-item .driver-popover-footer button.driver-next-btn {
-    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    background: var(--dv-gradient-brand);
     background-color: $maraseel_color_style;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--dv-radius-sm);
     font-weight: 600;
     color: #ffffff;
-    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    box-shadow: var(--dv-shadow-xl);
     --icon-stroke: currentColor;
     --icon-fill-bg: $maraseel_color_style;
   }
@@ -235,9 +290,9 @@ body.dv-maraseel-style {
   .new-timeline,
   .list-row-container {
     background: $maraseel_surface;
-    border-radius: 14px;
+    border-radius: var(--dv-radius-lg);
     border: 1px solid $maraseel_border;
-    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+    box-shadow: var(--dv-shadow-md);
   }
 
   /* .ce-block__content is a layout container — transparent, no card frame */
@@ -374,33 +429,33 @@ body.dv-maraseel-style {
   .indicator-pill.orange, .indicator-pill-right.orange,
   .badge.badge-warning,
   [data-status="Pending"] .indicator-pill {
-    background-color: $maraseel_status_pending_bg;
-    color: #B45309;
-    border-left: 3px solid $maraseel_status_pending;
+    background-color: var(--dv-warning-bg);
+    color: var(--dv-warning-700);
+    border-left: 3px solid var(--dv-warning-500);
   }
 
   .indicator-pill.blue, .indicator-pill-right.blue,
   .badge.badge-info,
   [data-status="In Progress"] .indicator-pill {
-    background-color: $maraseel_status_active_bg;
-    color: #1D4ED8;
-    border-left: 3px solid $maraseel_status_active;
+    background-color: var(--dv-info-bg);
+    color: var(--dv-info-700);
+    border-left: 3px solid var(--dv-info-500);
   }
 
   .indicator-pill.green, .indicator-pill-right.green,
   .badge.badge-success,
   [data-status="Completed"] .indicator-pill {
-    background-color: $maraseel_status_success_bg;
-    color: #047857;
-    border-left: 3px solid $maraseel_status_success;
+    background-color: var(--dv-success-bg);
+    color: var(--dv-success-700);
+    border-left: 3px solid var(--dv-success-500);
   }
 
   .indicator-pill.red, .indicator-pill-right.red,
   .badge.badge-danger,
   [data-status="Cancelled"] .indicator-pill {
-    background-color: $maraseel_status_danger_bg;
-    color: #B91C1C;
-    border-left: 3px solid $maraseel_status_danger;
+    background-color: var(--dv-danger-bg);
+    color: var(--dv-danger-700);
+    border-left: 3px solid var(--dv-danger-500);
   }
 
   /* ---- Progress bars (gradient per guide) ---- */
@@ -413,7 +468,7 @@ body.dv-maraseel-style {
 
   .progress .progress-bar {
     border-radius: 4px;
-    background: linear-gradient(90deg, #6366F1, #4338CA);
+    background: var(--dv-gradient-progress);
   }
 
   /* ---- Number widget hero (dashboard stats) ---- */
@@ -427,7 +482,7 @@ body.dv-maraseel-style {
   .widget .widget-head .widget-label .widget-title {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     color: $maraseel_text_muted;
   }
@@ -445,9 +500,9 @@ body.dv-maraseel-style {
 
   /* ---- Modals ---- */
   .modal-content {
-    border-radius: 18px;
+    border-radius: var(--dv-radius-lg);
     border: 1px solid $maraseel_border;
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+    box-shadow: var(--dv-shadow-lg);
   }
 
   .modal-header {
