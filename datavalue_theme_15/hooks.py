@@ -22,7 +22,7 @@ app_include_css = [
     "/assets/datavalue_theme_15/plugins/tooltip/tooltip-theme-twipsy.css",
     "/assets/datavalue_theme_15/plugins/flat-icons/flaticon.css",
     "/assets/datavalue_theme_15/plugins/simple-calendar/simple-calendar.css",
-    "datavalue_theme.bundle.css?ver=" + app_version
+    "datavalue_theme.bundle.css"
 ]
 
 app_include_js = [

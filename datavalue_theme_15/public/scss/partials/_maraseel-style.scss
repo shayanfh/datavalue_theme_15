@@ -226,22 +226,30 @@ body.dv-maraseel-style {
   }
 
   /* ---- Widgets / cards (per UI guide) ---- */
+  /* NOTE: .ce-block__content and .frappe-card intentionally excluded here.
+     .ce-block__content is the workspace block container that wraps .widget —
+     styling both would produce nested double borders. Same for .frappe-card
+     which is nested inside .form-section. */
   .widget,
-  .widget.shortcut-widget-box,
-  .widget.links-widget-box,
-  .widget.dashboard-widget-box,
-  .widget.onboarding-widget-box,
-  .widget.chart-widget-box,
-  .widget.number-widget-box,
   .form-section,
-  .frappe-card,
-  .ce-block__content,
   .new-timeline,
   .list-row-container {
     background: $maraseel_surface;
-    border-radius: 18px;
+    border-radius: 14px;
     border: 1px solid $maraseel_border;
     box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  }
+
+  /* .ce-block__content is a layout container — transparent, no card frame */
+  .ce-block__content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* .frappe-card inherits surface background but no extra border when nested */
+  .frappe-card {
+    background: $maraseel_surface;
   }
 
   .widget.shortcut-widget-box:hover {
