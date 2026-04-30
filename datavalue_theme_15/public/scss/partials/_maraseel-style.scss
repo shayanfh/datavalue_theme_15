@@ -6,7 +6,29 @@
   Source: UI_UX_Guide_for_ERPNext.md
 */
 
-body.dv-Maraseel-style {
+body.dv-Maraseel-style,
+body.dv-maraseel-style {
+  --dv-brand-50: #EEF2FF;
+  --dv-brand-100: #E0E7FF;
+  --dv-brand-500: #6366F1;
+  --dv-brand-600: #4F46E5;
+  --dv-brand-700: #4338CA;
+
+  --dv-slate-50: #F8FAFC;
+  --dv-slate-100: #F1F5F9;
+  --dv-slate-200: #E2E8F0;
+  --dv-slate-500: #64748B;
+  --dv-slate-700: #334155;
+  --dv-slate-900: #0F172A;
+
+  --dv-radius-sm: 8px;
+  --dv-radius-md: 10px;
+  --dv-radius-lg: 14px;
+  --dv-radius-xl: 18px;
+
+  --dv-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --dv-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.10);
+  --dv-shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.14);
 
   /* ---- Page-level surfaces ---- */
   background-color: $maraseel_bg_page $imp;

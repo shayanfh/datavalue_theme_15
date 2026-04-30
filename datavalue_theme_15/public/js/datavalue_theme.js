@@ -15,6 +15,61 @@
 
     frappe.auth = {};
 
+    const _themeMap = {
+        blue: "Blue",
+        green: "Green",
+        red: "Red",
+        orange: "Orange",
+        yellow: "Yellow",
+        pink: "Pink",
+        violet: "Violet",
+        maraseel: "Maraseel"
+    };
+
+    function applyThemeColor(themeColor) {
+        const colors = ["Blue", "Green", "Red", "Orange", "Yellow", "Pink", "Violet", "Maraseel"];
+        colors.forEach(color => {
+            document.body.classList.remove(`dv-${color}-style`);
+        });
+        themeColor = _themeMap[String(themeColor || "Blue").toLowerCase()] || "Blue";
+        document.body.classList.add(`dv-${themeColor}-style`);
+    }
+
+    function loadDatavalueThemeSettings() {
+        frappe.call({
+            method: "datavalue_theme_15.api.get_theme_settings",
+            callback: function (r) {
+                if (!r || !r.message) return;
+
+                window.datavalue_theme_settings = r.message;
+
+                applyThemeColor(r.message.theme_color);
+
+                if (r.message.dark_view == 1 || r.message.dark_view === "1") {
+                    document.body.classList.add("dv-dark-style");
+                    document.documentElement.setAttribute("data-theme-mode", "dark");
+                } else {
+                    document.body.classList.remove("dv-dark-style");
+                }
+
+                if (r.message.show_icon_label == 1 || r.message.show_icon_label === "1") {
+                    document.body.classList.add("show-icon-label");
+                } else {
+                    document.body.classList.remove("show-icon-label");
+                }
+
+                if (r.message.hide_icon_tooltip == 1 || r.message.hide_icon_tooltip === "1") {
+                    document.body.classList.add("hide-icon-tooltip");
+                } else {
+                    document.body.classList.remove("hide-icon-tooltip");
+                }
+            }
+        });
+    }
+
+    $(document).on("app-loaded page-change", function () {
+        loadDatavalueThemeSettings();
+    });
 
     $(document).ready(function () {
 

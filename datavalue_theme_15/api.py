@@ -10,42 +10,39 @@ from six import string_types
 
 @frappe.whitelist()
 def get_module_name_from_doctype(doc_name, current_module=""):
-    # frappe.msgprint("======"+str(doc_name))
-    condition = ""
-    if doc_name:
-        if current_module:
-            condition = "and  w.`name` = {current_module} ".format(current_module=current_module)
+    if not doc_name:
+        return []
 
-        list_od_dicts = frappe.db.sql("""
-            select *
-                    from (
-                            select  w.`name` `module`,
-                                 (select restrict_to_domain from `tabModule Def` where `name` = w.module ) restrict_to_domain
-                                             from  tabWorkspace w
-                                             inner join
-                                                        `tabWorkspace Link` l
-                                                        on w.`name` = l.parent
-                                                         where link_to = '{doc_name}'
-                                                          %s
-                                )	T
-        """.format(doc_name=doc_name), (condition), as_dict=True, debug=False)
-        if list_od_dicts:
-            return [{"module": list_od_dicts[0]["module"]}]
-        else:
-            list_od_dicts = frappe.db.sql("""
-                select *
-                        from (
-                                select  w.`name` `module`,
-                                     (select restrict_to_domain from `tabModule Def` where `name` = w.module ) restrict_to_domain
-                                                 from  tabWorkspace w
-                                                 inner join
-                                                            `tabWorkspace Link` l
-                                                            on w.`name` = l.parent
-                                                             where link_to = '{doc_name}'
-                                    )	T
-            """.format(doc_name=doc_name), as_dict=True, debug=False)
-        if list_od_dicts:
-            return [{"module": list_od_dicts[0]["module"]}]
+    values = {"doc_name": doc_name}
+    condition = ""
+
+    if current_module:
+        condition = "and w.`name` = %(current_module)s"
+        values["current_module"] = current_module
+
+    rows = frappe.db.sql(
+        f"""
+        select
+            w.`name` as module,
+            (
+                select restrict_to_domain
+                from `tabModule Def`
+                where `name` = w.module
+            ) as restrict_to_domain
+        from `tabWorkspace` w
+        inner join `tabWorkspace Link` l on w.`name` = l.parent
+        where l.link_to = %(doc_name)s
+        {condition}
+        limit 1
+        """,
+        values,
+        as_dict=True,
+    )
+
+    if rows:
+        return [{"module": rows[0]["module"]}]
+
+    return []
 
 
 @frappe.whitelist()
@@ -72,48 +69,71 @@ def get_company_logo():
 
 @frappe.whitelist(allow_guest=True)
 def get_theme_settings():
+    doc = frappe.get_single("Theme Settings")
+
     slideshow_photos = []
-    settings_list = {}
-    settings = frappe.db.sql("""
-                       SELECT * FROM tabSingles WHERE doctype = 'Theme Settings';
-    """, as_dict=True, debug=False)
-
-    for setting in settings:
-        settings_list[setting['field']] = setting['value']
-
-    if (("background_type" in settings_list) and settings_list['background_type'] == 'Slideshow'):
-        slideshow_photos = frappe.db.sql("""
-                               SELECT `photo` FROM `tabSlideshow Photos` WHERE `parent` = 'Theme Settings';
-            """, as_dict=True, debug=False)
+    if doc.background_type == "Slideshow":
+        slideshow_photos = [
+            {"photo": row.photo}
+            for row in doc.get("slideshow_photos", [])
+        ]
 
     return {
-        'enable_background': settings_list['enable_background'] if ("enable_background" in settings_list) else '',
-        'background_photo': settings_list['background_photo'] if ("background_photo" in settings_list) else '',
-        'background_type': settings_list['background_type'] if ("background_type" in settings_list) else '',
-        'full_page_background': settings_list['full_page_background'] if ("full_page_background" in settings_list) else '',
-        'transparent_background': settings_list['transparent_background'] if ("transparent_background" in settings_list) else '',
-        'slideshow_photos': slideshow_photos,
-        'dark_view': settings_list['dark_view'] if ("dark_view" in settings_list) else '',
-        'theme_color': settings_list['theme_color'] if ("theme_color" in settings_list) else '',
-        'open_workspace_on_mobile_menu': settings_list['open_workspace_on_mobile_menu'] if ("open_workspace_on_mobile_menu" in settings_list) else '',
-        'show_icon_label': settings_list['show_icon_label'] if ("show_icon_label" in settings_list) else '',
-        'hide_icon_tooltip': settings_list['hide_icon_tooltip'] if ("hide_icon_tooltip" in settings_list) else '',
-        'always_close_sub_menu': settings_list['always_close_sub_menu'] if ("always_close_sub_menu" in settings_list) else '',
-        'menu_opening_type': settings_list['menu_opening_type'] if ("menu_opening_type" in settings_list) else '',
-        'loading_image': settings_list['loading_image'] if ("loading_image" in settings_list) else ''
+        "enable_background": doc.enable_background,
+        "background_photo": doc.background_photo,
+        "background_type": doc.background_type,
+        "full_page_background": doc.full_page_background,
+        "transparent_background": doc.transparent_background,
+        "slideshow_photos": slideshow_photos,
+        "dark_view": doc.dark_view,
+        "theme_color": doc.theme_color,
+        "open_workspace_on_mobile_menu": doc.open_workspace_on_mobile_menu,
+        "show_icon_label": doc.show_icon_label,
+        "hide_icon_tooltip": doc.hide_icon_tooltip,
+        "always_close_sub_menu": doc.always_close_sub_menu,
+        "menu_opening_type": doc.menu_opening_type,
+        "loading_image": doc.loading_image,
+        "theme_logo": getattr(doc, "theme_logo", ""),
+        "favicon": getattr(doc, "favicon", ""),
+        "font_family": getattr(doc, "font_family", ""),
     }
 
 
 @frappe.whitelist()
 def update_theme_settings(**data):
     data = frappe._dict(data)
-    doc = frappe.get_doc("Theme Settings")
-    doc.theme_color = data.theme_color
-    doc.apply_on_menu = data.apply_on_menu
-    doc.apply_on_dashboard = data.apply_on_dashboard
-    doc.apply_on_workspace = data.apply_on_workspace
-    doc.apply_on_navbar = data.apply_on_navbar
+    doc = frappe.get_single("Theme Settings")
+
+    allowed_fields = [
+        "theme_color",
+        "apply_on_menu",
+        "apply_on_dashboard",
+        "apply_on_workspace",
+        "apply_on_navbar",
+        "dark_view",
+        "enable_background",
+        "background_photo",
+        "background_type",
+        "full_page_background",
+        "transparent_background",
+        "open_workspace_on_mobile_menu",
+        "show_icon_label",
+        "hide_icon_tooltip",
+        "always_close_sub_menu",
+        "menu_opening_type",
+        "loading_image",
+        "theme_logo",
+        "favicon",
+        "font_family",
+    ]
+
+    for field in allowed_fields:
+        if field in data:
+            doc.set(field, data.get(field))
+
     doc.save(ignore_permissions=True)
+    frappe.clear_cache()
+
     return doc
 
 
